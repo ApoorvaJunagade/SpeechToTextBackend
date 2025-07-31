@@ -104,7 +104,12 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       });
     }
 
-    
+    res.status(200).json({
+      message: 'File uploaded and transcribed!',
+      filename: uploadedFile,
+      transcription: transcription,
+      supabaseRow: data,
+    });
 
   } catch (err) {
     console.error('Upload error:', err);
