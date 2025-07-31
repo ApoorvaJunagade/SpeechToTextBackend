@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const { createClient } = require('@supabase/supabase-js');
 app.use(cors({
   origin: 'http://localhost:5173', // Replace with frontend origin
@@ -157,25 +157,6 @@ app.get('/transcription/:filename', async (req, res) => {
 
   res.status(200).json({ transcription: data.transcription });
 });
-
-router.get('/history', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('transcriptions')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      return res.status(500).json({ message: 'Error fetching history', error });
-    }
-
-    return res.status(200).json({ transcriptions: data });
-  } catch (err) {
-    return res.status(500).json({ message: 'Server error', error: err.message });
-  }
-});
-
-module.exports = router;
 
 
 // Start server
