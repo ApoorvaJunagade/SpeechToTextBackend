@@ -12,8 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const { createClient } = require('@supabase/supabase-js');
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with frontend origin
-  methods: ['GET', 'POST'],
+origin: ['http://localhost:5173', 'https://speechtotextconversion.netlify.app'],  methods: ['GET', 'POST'],
   credentials: true, // Optional: if you're using cookies or auth
 }));
 const supabaseUrl = 'https://mutqnggyktozmzgprsjv.supabase.co';
