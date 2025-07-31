@@ -33,8 +33,7 @@ const storage = multer.diskStorage({
 });
 
 const audioFileFilter = (req, file, cb) => {
-  const filetypes = /mp3|mpeg|wav|webm|ogg|x-wav|x-m4a|aac|octet-stream/;
-
+  const filetypes = /mp3|mpeg|wav|webm|ogg|x-wav|x-m4a|aac|m4a|mp4|octet-stream/;
   const mimetype = filetypes.test(file.mimetype);
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
 
